@@ -64,20 +64,23 @@ class _OnboardingContentState extends State<OnboardingContent> {
                 description: controller.pageItems[0]["description"] as String,
               )
             else
-              SizedBox(
-                height: _pageHeight,
-                child: PageView(
-                  controller: controller.pageController,
-                  children: [
-                    for (int i = 0; i < controller.pageItems.length; i++)
-                      _PageItem(
-                        title: controller.pageItems[i]["title"] as String,
-                        highlightTitle:
-                            controller.pageItems[i]["highlightTitle"] as String,
-                        description:
-                            controller.pageItems[i]["description"] as String,
-                      ),
-                  ],
+              Flexible(
+                fit: FlexFit.loose,
+                child: SizedBox(
+                  height: _pageHeight,
+                  child: PageView(
+                    controller: controller.pageController,
+                    children: [
+                      for (int i = 0; i < controller.pageItems.length; i++)
+                        _PageItem(
+                          title: controller.pageItems[i]["title"] as String,
+                          highlightTitle:
+                              controller.pageItems[i]["highlightTitle"] as String,
+                          description:
+                              controller.pageItems[i]["description"] as String,
+                        ),
+                    ],
+                  ),
                 ),
               ),
             SmoothPageIndicator(
