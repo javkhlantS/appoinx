@@ -37,7 +37,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
       bottom: 0,
       left: 0,
       right: 0,
-      height: 324,
+      height: MediaQuery.of(context).size.height * 0.42,
       child: Container(
         decoration: BoxDecoration(
           color: colors.neutral0,
@@ -46,7 +46,12 @@ class _OnboardingContentState extends State<OnboardingContent> {
             topRight: Radius.circular(32),
           ),
         ),
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.only(
+          top: 24,
+          left: 24,
+          right: 24,
+          bottom: MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
