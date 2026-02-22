@@ -29,7 +29,7 @@ class OnboardingController extends GetxController {
   void continuePage() {
     final currentPage = pageController.page?.round() ?? 0;
     if (currentPage == pageItems.length - 1) {
-      Get.offAllNamed(AppRouteNames.home);
+      Get.offAllNamed(AppRouteNames.signin);
       return;
     }
 
@@ -40,6 +40,6 @@ class OnboardingController extends GetxController {
   }
 
   void skip() {
-    Get.offAllNamed(AppRouteNames.home);
+    Get.offAllNamed(AppRouteNames.signin);
   }
 }
