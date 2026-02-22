@@ -47,7 +47,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
           ),
         ),
         padding: EdgeInsets.only(
-          top: 24,
+          top: 32,
           left: 24,
           right: 24,
           bottom: MediaQuery.of(context).padding.bottom,
