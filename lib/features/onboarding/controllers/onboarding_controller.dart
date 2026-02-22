@@ -38,4 +38,8 @@ class OnboardingController extends GetxController {
       curve: Curves.easeInOut,
     );
   }
+
+  void skip() {
+    Get.offAllNamed(AppRouteNames.home);
+  }
 }

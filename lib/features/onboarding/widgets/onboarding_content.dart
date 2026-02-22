@@ -75,7 +75,8 @@ class _OnboardingContentState extends State<OnboardingContent> {
                         _PageItem(
                           title: controller.pageItems[i]["title"] as String,
                           highlightTitle:
-                              controller.pageItems[i]["highlightTitle"] as String,
+                              controller.pageItems[i]["highlightTitle"]
+                                  as String,
                           description:
                               controller.pageItems[i]["description"] as String,
                         ),
@@ -100,7 +101,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: controller.skip,
                   style: TextButton.styleFrom(
                     foregroundColor: colors.green300,
                     textStyle: textStyles.subtitle3,
