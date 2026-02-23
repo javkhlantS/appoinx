@@ -1,5 +1,7 @@
+import 'package:appoinx/core/theme/constants/app_button_styles.dart';
 import 'package:appoinx/core/theme/constants/app_palette.dart';
 import 'package:appoinx/core/theme/constants/app_typography.dart';
+import 'package:appoinx/core/theme/extensions/app_button_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_colors_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_text_styles_extensions.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +11,64 @@ class AppTheme {
     final defaultTheme = ThemeData.light();
 
     return defaultTheme.copyWith(
+      iconTheme: const IconThemeData(size: 24),
       scaffoldBackgroundColor: _lightColors.neutral0,
       textTheme: defaultTheme.textTheme.copyWith(
         bodyMedium: _textStyles.body1.copyWith(
           color: _lightColors.neutral500,
         ),
+        bodyLarge: _textStyles.body3.copyWith(
+          color: _lightColors.neutral500,
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: _buttonStyles.textButton,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: _buttonStyles.primaryButton,
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        contentPadding: const EdgeInsets.all(16),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: _lightColors.neutral50, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _lightColors.neutral50, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _lightColors.green300, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _lightColors.errorDark, width: 1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        hintStyle: _textStyles.body3.copyWith(
+          color: _lightColors.neutral50,
+        ),
+        errorStyle: _textStyles.subtitle4.copyWith(
+          color: _lightColors.errorDark,
+        ),
+        prefixIconColor: _lightColors.neutral50,
+        suffixIconColor: _lightColors.neutral50,
+        prefixIconConstraints: const BoxConstraints(
+          minWidth: 40,
+          minHeight: 24,
+        ),
+        suffixIconConstraints: const BoxConstraints(
+          minWidth: 40,
+          minHeight: 24,
+        ),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: _lightColors.neutral50,
       ),
       extensions: [
         _lightColors,
         _textStyles,
+        _buttonStyles,
       ],
     );
   }
@@ -73,21 +124,56 @@ class AppTheme {
     errorDarker: AppPalette.error.darker,
   );
 
-  static const _textStyles = AppTextStylesExtensions(
-    h1: AppTypography.h1,
-    h2: AppTypography.h2,
-    h3: AppTypography.h3,
-    hero1: AppTypography.hero1,
-    hero2: AppTypography.hero2,
-    hero3Medium: AppTypography.hero3Medium,
-    hero3: AppTypography.hero3,
-    subtitle1: AppTypography.subtitle1,
-    subtitle2: AppTypography.subtitle2,
-    subtitle3: AppTypography.subtitle3,
-    subtitle4: AppTypography.subtitle4,
-    body1: AppTypography.body1,
-    body2: AppTypography.body2,
-    body3: AppTypography.body3,
-    body4: AppTypography.body4,
+  static final _textStyles = AppTextStylesExtensions(
+    h1: AppTypography.h1.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    h2: AppTypography.h2.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    h3: AppTypography.h3.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    hero1: AppTypography.hero1.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    hero2: AppTypography.hero2.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    hero3Medium: AppTypography.hero3Medium.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    hero3: AppTypography.hero3.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    subtitle1: AppTypography.subtitle1.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    subtitle2: AppTypography.subtitle2.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    subtitle3: AppTypography.subtitle3.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    subtitle4: AppTypography.subtitle4.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    body1: AppTypography.body1.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    body2: AppTypography.body2.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    body3: AppTypography.body3.copyWith(
+      color: _lightColors.neutral500,
+    ),
+    body4: AppTypography.body4.copyWith(
+      color: _lightColors.neutral500,
+    ),
+  );
+
+  static final _buttonStyles = AppButtonExtensions(
+    textButton: AppButtonStyles.textButton,
+    primaryButton: AppButtonStyles.primaryButton,
   );
 }

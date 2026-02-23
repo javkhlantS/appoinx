@@ -31,7 +31,6 @@ class _OnboardingContentState extends State<OnboardingContent> {
   Widget build(BuildContext context) {
     final controller = Get.put(OnboardingController());
     final colors = context.appColorsExtensions;
-    final textStyles = context.appTextStylesExtensions;
 
     return Positioned(
       bottom: 0,
@@ -102,10 +101,6 @@ class _OnboardingContentState extends State<OnboardingContent> {
               children: [
                 TextButton(
                   onPressed: controller.skip,
-                  style: TextButton.styleFrom(
-                    foregroundColor: colors.green300,
-                    textStyle: textStyles.subtitle3,
-                  ),
                   child: const Text("Skip"),
                 ),
                 IconButton.filled(
