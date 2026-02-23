@@ -62,6 +62,17 @@ class AppTheme {
           minHeight: 24,
         ),
       ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return _lightColors.green300;
+          }
+          return Colors.transparent;
+        }),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        visualDensity: VisualDensity.compact,
+      ),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: _lightColors.neutral50,
       ),
