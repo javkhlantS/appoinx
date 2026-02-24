@@ -4,6 +4,7 @@ import 'package:appoinx/features/auth/forgot_password/screens/forgot_password_sc
 import 'package:appoinx/features/auth/otp/screens/otp_screen.dart';
 import 'package:appoinx/features/auth/signin/screens/signin_screen.dart';
 import 'package:appoinx/features/auth/signup/screens/signup_screen.dart';
+import 'package:appoinx/features/auth/success/screens/success_screen.dart';
 import 'package:appoinx/features/onboarding/screens/onboarding_screen.dart';
 import 'package:get/get.dart';
 
@@ -32,6 +33,10 @@ abstract class AppRoutes {
     GetPage(
       name: AppRouteNames.otp,
       page: () => const OtpScreen(),
+    ),
+    GetPage(
+      name: AppRouteNames.success,
+      page: () => const SuccessScreen(),
     ),
   ];
 }
