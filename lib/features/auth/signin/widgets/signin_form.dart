@@ -1,11 +1,15 @@
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
+import 'package:appoinx/features/auth/signin/controllers/signin_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SigninForm extends StatelessWidget {
   const SigninForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SigninController>();
+
     return Form(
       child: ListView(
         shrinkWrap: true,
@@ -37,7 +41,7 @@ class SigninForm extends StatelessWidget {
                 minimumSize: Size.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              onPressed: () {},
+              onPressed: controller.handleForgotPassword,
               child: const Text("Forgot password"),
             ),
           ),

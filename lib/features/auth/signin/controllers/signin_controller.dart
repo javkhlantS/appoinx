@@ -5,4 +5,8 @@ class SigninController extends GetxController {
   void handleSignUp() {
     Get.toNamed(AppRouteNames.signup);
   }
+
+  void handleForgotPassword() {
+    Get.toNamed(AppRouteNames.forgotPassword);
+  }
 }
