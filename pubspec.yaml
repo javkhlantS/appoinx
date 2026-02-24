@@ -19,6 +19,7 @@ dependencies:
   dotted_line: ^3.2.3
   phosphor_flutter: ^2.1.0
   flutter_svg: ^2.2.3
+  pinput: ^6.0.2
 
 dev_dependencies:
   flutter_test:

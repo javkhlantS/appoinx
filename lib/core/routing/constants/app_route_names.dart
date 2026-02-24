@@ -4,4 +4,5 @@ abstract class AppRouteNames {
   static const signin = "/signin";
   static const signup = "/signup";
   static const forgotPassword = "/forgot-password";
+  static const otp = "/otp";
 }

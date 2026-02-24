@@ -1,7 +1,9 @@
 import 'package:appoinx/core/theme/extensions/app_colors_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_text_styles_extensions.dart';
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
+import 'package:appoinx/features/auth/forgot_password/controllers/forgot_password_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -10,6 +12,8 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyles = context.appTextStylesExtensions;
     final colors = context.appColorsExtensions;
+
+    final controller = Get.put(ForgotPasswordController());
 
     return Scaffold(
       body: SafeArea(
@@ -54,7 +58,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: controller.handleSubmit,
                   child: const Text("Send OTP"),
                 ),
               ),
