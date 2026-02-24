@@ -54,12 +54,12 @@ class AppTheme {
         prefixIconColor: _lightColors.neutral50,
         suffixIconColor: _lightColors.neutral50,
         prefixIconConstraints: const BoxConstraints(
-          minWidth: 40,
-          minHeight: 24,
+          minWidth: 0,
+          minHeight: 0,
         ),
         suffixIconConstraints: const BoxConstraints(
-          minWidth: 40,
-          minHeight: 24,
+          minWidth: 0,
+          minHeight: 0,
         ),
       ),
       checkboxTheme: CheckboxThemeData(
