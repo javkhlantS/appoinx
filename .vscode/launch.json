@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "iOS",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "7F365EA7-2975-40BB-A888-E4335CB4652F"
+    },
+    {
+      "name": "Android",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "iOS + Android",
+      "configurations": ["iOS", "Android"]
+    }
+  ]
+}
