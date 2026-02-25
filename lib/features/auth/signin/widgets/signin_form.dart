@@ -1,7 +1,9 @@
+import 'package:appoinx/core/widgets/app_text_field_icon_wrapper.dart';
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
 import 'package:appoinx/features/auth/signin/controllers/signin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class SigninForm extends StatelessWidget {
   const SigninForm({super.key});
@@ -24,15 +26,27 @@ class SigninForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          AppTextFieldWrapper(
-            label: "Password",
-            child: TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Enter password',
+          Obx(() {
+            return AppTextFieldWrapper(
+              label: "Password",
+              child: TextFormField(
+                obscureText: controller.obscurePassword.value,
+                decoration: InputDecoration(
+                  hintText: 'Enter password',
+                  suffixIcon: GestureDetector(
+                    onTap: controller.togglePasswordObscure,
+                    child: AppTextFieldIconWrapper(
+                      icon: Icon(
+                        controller.obscurePassword.value
+                            ? PhosphorIcons.eyeClosed()
+                            : PhosphorIcons.eye(),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          }),
           const SizedBox(height: 8),
           Align(
             alignment: Alignment.centerRight,
