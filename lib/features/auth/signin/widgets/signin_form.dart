@@ -47,7 +47,7 @@ class SigninForm extends StatelessWidget {
           ),
           const SizedBox(height: 28),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: controller.handleSubmit,
             child: const Text("Sign In"),
           ),
         ],
