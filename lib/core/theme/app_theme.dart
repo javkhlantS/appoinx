@@ -28,7 +28,7 @@ class AppTheme {
         style: _buttonStyles.primaryButton,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: const EdgeInsets.all(0),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: _lightColors.neutral50, width: 1),
           borderRadius: BorderRadius.circular(12),
@@ -72,6 +72,9 @@ class AppTheme {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         visualDensity: VisualDensity.compact,
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: _lightColors.green300,
       ),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: _lightColors.neutral50,

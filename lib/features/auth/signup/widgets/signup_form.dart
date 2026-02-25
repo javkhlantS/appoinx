@@ -20,29 +20,27 @@ class SignupForm extends StatelessWidget {
         children: [
           AppTextFieldWrapper(
             label: "Email",
-            child: TextFormField(
-              decoration: const InputDecoration(hintText: "Enter email"),
+            builder: (decoration) => TextFormField(
+              decoration: decoration.copyWith(hintText: 'Enter email'),
             ),
           ),
           const SizedBox(height: 16),
           Obx(() {
             return AppTextFieldWrapper(
               label: "Password",
-              child: TextFormField(
-                obscureText: controller.obscurePassword.value,
-                decoration: InputDecoration(
-                  hintText: "********",
-                  suffixIcon: GestureDetector(
-                    onTap: controller.togglePasswordObscure,
-                    child: AppTextFieldIconWrapper(
-                      icon: Icon(
-                        controller.obscurePassword.value
-                            ? PhosphorIcons.eyeClosed()
-                            : PhosphorIcons.eye(),
-                      ),
-                    ),
+              suffixIcon: GestureDetector(
+                onTap: controller.togglePasswordObscure,
+                child: AppTextFieldIconWrapper(
+                  icon: Icon(
+                    controller.obscurePassword.value
+                        ? PhosphorIcons.eyeClosed()
+                        : PhosphorIcons.eye(),
                   ),
                 ),
+              ),
+              builder: (decoration) => TextFormField(
+                obscureText: controller.obscurePassword.value,
+                decoration: decoration.copyWith(hintText: '********'),
               ),
             );
           }),
@@ -50,21 +48,19 @@ class SignupForm extends StatelessWidget {
           Obx(() {
             return AppTextFieldWrapper(
               label: "Confirm Password",
-              child: TextFormField(
-                obscureText: controller.obscurePassword.value,
-                decoration: InputDecoration(
-                  hintText: "********",
-                  suffixIcon: GestureDetector(
-                    onTap: controller.togglePasswordObscure,
-                    child: AppTextFieldIconWrapper(
-                      icon: Icon(
-                        controller.obscurePassword.value
-                            ? PhosphorIcons.eyeClosed()
-                            : PhosphorIcons.eye(),
-                      ),
-                    ),
+              suffixIcon: GestureDetector(
+                onTap: controller.togglePasswordObscure,
+                child: AppTextFieldIconWrapper(
+                  icon: Icon(
+                    controller.obscurePassword.value
+                        ? PhosphorIcons.eyeClosed()
+                        : PhosphorIcons.eye(),
                   ),
                 ),
+              ),
+              builder: (decoration) => TextFormField(
+                obscureText: controller.obscurePassword.value,
+                decoration: decoration.copyWith(hintText: '********'),
               ),
             );
           }),

@@ -4,16 +4,27 @@ import 'package:flutter/material.dart';
 
 class AppTextFieldWrapper extends StatelessWidget {
   final String label;
-  final TextFormField child;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final Widget Function(InputDecoration decoration) builder;
 
   const AppTextFieldWrapper({
     super.key,
     required this.label,
-    required this.child,
+    required this.builder,
+    this.prefixIcon,
+    this.suffixIcon,
   });
 
   @override
   Widget build(BuildContext context) {
+    final decoration = InputDecoration(
+      prefix: prefixIcon == null ? const SizedBox(width: 16) : null,
+      prefixIcon: prefixIcon,
+      suffix: suffixIcon == null ? const SizedBox(width: 16) : null,
+      suffixIcon: suffixIcon,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,7 +35,7 @@ class AppTextFieldWrapper extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        child,
+        builder(decoration),
       ],
     );
   }

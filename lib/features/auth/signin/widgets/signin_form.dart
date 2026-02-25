@@ -1,7 +1,9 @@
+import 'package:appoinx/core/widgets/app_loading_button.dart';
 import 'package:appoinx/core/widgets/app_text_field_icon_wrapper.dart';
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
 import 'package:appoinx/features/auth/signin/controllers/signin_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -13,15 +15,22 @@ class SigninForm extends StatelessWidget {
     final controller = Get.find<SigninController>();
 
     return Form(
+      key: controller.formKey,
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
           AppTextFieldWrapper(
             label: "Email",
-            child: TextFormField(
-              decoration: const InputDecoration(
-                hintText: 'Enter email',
+            builder: (decoration) => Obx(
+              () => TextFormField(
+                controller: controller.emailController,
+                keyboardType: TextInputType.emailAddress,
+                enabled: !controller.isSubmitting.value,
+                decoration: decoration.copyWith(hintText: 'Enter email'),
+                validator: ValidationBuilder()
+                    .email('Please enter a valid email')
+                    .build(),
               ),
             ),
           ),
@@ -29,21 +38,22 @@ class SigninForm extends StatelessWidget {
           Obx(() {
             return AppTextFieldWrapper(
               label: "Password",
-              child: TextFormField(
-                obscureText: controller.obscurePassword.value,
-                decoration: InputDecoration(
-                  hintText: 'Enter password',
-                  suffixIcon: GestureDetector(
-                    onTap: controller.togglePasswordObscure,
-                    child: AppTextFieldIconWrapper(
-                      icon: Icon(
-                        controller.obscurePassword.value
-                            ? PhosphorIcons.eyeClosed()
-                            : PhosphorIcons.eye(),
-                      ),
-                    ),
+              suffixIcon: GestureDetector(
+                onTap: controller.togglePasswordObscure,
+                child: AppTextFieldIconWrapper(
+                  icon: Icon(
+                    controller.obscurePassword.value
+                        ? PhosphorIcons.eyeClosed()
+                        : PhosphorIcons.eye(),
                   ),
                 ),
+              ),
+              builder: (decoration) => TextFormField(
+                controller: controller.passwordController,
+                obscureText: controller.obscurePassword.value,
+                validator: ValidationBuilder().build(),
+                enabled: !controller.isSubmitting.value,
+                decoration: decoration.copyWith(hintText: 'Enter password'),
               ),
             );
           }),
@@ -60,9 +70,12 @@ class SigninForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 28),
-          ElevatedButton(
-            onPressed: controller.handleSubmit,
-            child: const Text("Sign In"),
+          Obx(
+            () => AppLoadingButton(
+              label: "Sign In",
+              isLoading: controller.isSubmitting.value,
+              onPressed: controller.handleSubmit,
+            ),
           ),
         ],
       ),

@@ -45,10 +45,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                     Form(
                       child: AppTextFieldWrapper(
                         label: "Email",
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: "Enter email",
-                          ),
+                        builder: (decoration) => TextFormField(
+                          decoration: decoration.copyWith(hintText: 'Enter email'),
                         ),
                       ),
                     ),
