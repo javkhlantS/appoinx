@@ -7,12 +7,11 @@ import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class SignupForm extends StatelessWidget {
+class SignupForm extends GetView<SignupController> {
   const SignupForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<SignupController>();
 
     return Form(
       key: controller.formKey,

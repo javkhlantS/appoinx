@@ -87,4 +87,11 @@ class AuthRepository {
     final data = response.data;
     return data;
   }
+
+  Future<User> me() async {
+    final response = await _dio.get("/auth/me");
+    final data = response.data;
+
+    return User.fromJson(data["data"]);
+  }
 }

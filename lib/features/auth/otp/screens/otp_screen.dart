@@ -7,15 +7,13 @@ import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends GetView<OtpController> {
   const OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textStyles = context.appTextStylesExtensions;
     final colors = context.appColorsExtensions;
-
-    final controller = Get.put(OtpController());
 
     final defaultPinTheme = PinTheme(
       width: 52,

@@ -6,15 +6,13 @@ import 'package:appoinx/features/auth/widgets/social_login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SigninScreen extends StatelessWidget {
+class SigninScreen extends GetView<SigninController> {
   const SigninScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textStyles = context.appTextStylesExtensions;
     final colors = context.appColorsExtensions;
-
-    final controller = Get.put(SigninController());
 
     return Scaffold(
       body: SafeArea(

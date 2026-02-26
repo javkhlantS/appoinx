@@ -1,3 +1,4 @@
+import 'package:appoinx/core/controllers/auth_controller.dart';
 import 'package:appoinx/core/repository/auth_repository.dart';
 import 'package:appoinx/core/routing/constants/app_route_names.dart';
 import 'package:appoinx/core/services/secure_storage_service.dart';
@@ -5,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SigninController extends GetxController {
+  static SigninController get to => Get.find();
+
   final _authRepo = AuthRepository();
 
   final formKey = GlobalKey<FormState>();
@@ -47,6 +50,7 @@ class SigninController extends GetxController {
       );
 
       await SecureStorageService.write(StorageKeys.accessToken, token);
+      AuthController.to.currentUser.value = await _authRepo.me();
       Get.offAllNamed(AppRouteNames.home);
     } finally {
       isSubmitting.value = false;

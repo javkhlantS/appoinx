@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OnboardingController extends GetxController {
+  static OnboardingController get to => Get.find();
+
   final pageItems = [
     {
       "title": "Expert Doctor ",

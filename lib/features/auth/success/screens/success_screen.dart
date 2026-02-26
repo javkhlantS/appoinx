@@ -5,15 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class SuccessScreen extends StatelessWidget {
+class SuccessScreen extends GetView<SuccessController> {
   const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textStyles = context.appTextStylesExtensions;
     final colors = context.appColorsExtensions;
-
-    final controller = Get.put(SuccessController());
 
     return Scaffold(
       body: SafeArea(

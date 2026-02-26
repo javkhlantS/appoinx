@@ -2,7 +2,6 @@ import 'package:appoinx/core/theme/extensions/app_colors_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_text_styles_extensions.dart';
 import 'package:appoinx/features/onboarding/controllers/onboarding_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -30,7 +29,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(OnboardingController());
+    final controller = OnboardingController.to;
     final colors = context.appColorsExtensions;
 
     return Positioned(

@@ -1,4 +1,5 @@
 abstract class AppRouteNames {
+  static const init = "/init";
   static const onboarding = "/onboarding";
   static const home = "/";
   static const signin = "/signin";

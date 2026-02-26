@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ForgotPasswordController extends GetxController {
+  static ForgotPasswordController get to => Get.find();
+
   final _authRepo = AuthRepository();
 
   final formKey = GlobalKey<FormState>();

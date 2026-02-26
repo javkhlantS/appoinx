@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpController extends GetxController {
+  static OtpController get to => Get.find();
+
   final _authRepo = AuthRepository();
   final _email = Get.arguments["email"] as String;
 

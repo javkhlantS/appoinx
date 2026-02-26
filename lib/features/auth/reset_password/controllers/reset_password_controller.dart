@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ResetPasswordController extends GetxController {
+  static ResetPasswordController get to => Get.find();
+
   final _resetToken = Get.arguments["resetToken"] as String;
   final _authRepo = AuthRepository();
 

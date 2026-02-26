@@ -9,15 +9,13 @@ import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
+class ResetPasswordScreen extends GetView<ResetPasswordController> {
   const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final textStyles = context.appTextStylesExtensions;
     final colors = context.appColorsExtensions;
-
-    final controller = Get.put(ResetPasswordController());
 
     return Scaffold(
       body: SafeArea(
