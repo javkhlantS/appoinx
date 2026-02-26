@@ -47,7 +47,7 @@ class SigninController extends GetxController {
       );
 
       await SecureStorageService.write(StorageKeys.accessToken, token);
-      Get.toNamed(AppRouteNames.home);
+      Get.offAllNamed(AppRouteNames.home);
     } finally {
       isSubmitting.value = false;
     }

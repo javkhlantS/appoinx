@@ -1,8 +1,10 @@
 import 'package:appoinx/core/theme/extensions/app_colors_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_text_styles_extensions.dart';
+import 'package:appoinx/core/widgets/app_loading_button.dart';
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
 import 'package:appoinx/features/auth/forgot_password/controllers/forgot_password_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -43,11 +45,23 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     Form(
+                      key: controller.formKey,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
                       child: AppTextFieldWrapper(
                         label: "Email",
-                        builder: (decoration) => TextFormField(
-                          decoration: decoration.copyWith(hintText: 'Enter email'),
-                        ),
+                        builder: (decoration) => Obx(() {
+                          return TextFormField(
+                            controller: controller.emailController,
+                            enabled: !controller.isSubmitting.value,
+                            validator: ValidationBuilder()
+                                .email()
+                                .required()
+                                .build(),
+                            decoration: decoration.copyWith(
+                              hintText: 'Enter email',
+                            ),
+                          );
+                        }),
                       ),
                     ),
                   ],
@@ -55,10 +69,13 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: controller.handleSubmit,
-                  child: const Text("Send OTP"),
-                ),
+                child: Obx(() {
+                  return AppLoadingButton(
+                    label: "Send OTP",
+                    isLoading: controller.isSubmitting.value,
+                    onPressed: controller.handleSubmit,
+                  );
+                }),
               ),
             ],
           ),

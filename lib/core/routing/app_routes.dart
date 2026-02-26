@@ -1,6 +1,7 @@
 import 'package:appoinx/core/routing/constants/app_route_names.dart';
 import 'package:appoinx/features/auth/forgot_password/screens/forgot_password_screen.dart';
 import 'package:appoinx/features/auth/otp/screens/otp_screen.dart';
+import 'package:appoinx/features/auth/reset_password/screens/reset_password_screen.dart';
 import 'package:appoinx/features/auth/signin/screens/signin_screen.dart';
 import 'package:appoinx/features/auth/signup/screens/signup_screen.dart';
 import 'package:appoinx/features/auth/success/screens/success_screen.dart';
@@ -37,6 +38,10 @@ abstract class AppRoutes {
     GetPage(
       name: AppRouteNames.success,
       page: () => const SuccessScreen(),
+    ),
+    GetPage(
+      name: AppRouteNames.resetPassword,
+      page: () => const ResetPasswordScreen(),
     ),
   ];
 }

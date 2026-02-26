@@ -99,7 +99,15 @@ class SignupForm extends StatelessWidget {
               builder: (decoration) => TextFormField(
                 controller: controller.passwordConfirmationController,
                 enabled: !controller.isSubmitting.value,
-                validator: ValidationBuilder().required().build(),
+                validator: (value) {
+                  final required = ValidationBuilder().required().build();
+                  final error = required(value);
+                  if (error != null) return error;
+                  if (value != controller.passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
                 obscureText: controller.obscurePassword.value,
                 decoration: decoration.copyWith(hintText: '********'),
               ),

@@ -1,7 +1,9 @@
 import 'package:appoinx/core/theme/extensions/app_colors_extensions.dart';
 import 'package:appoinx/core/theme/extensions/app_text_styles_extensions.dart';
+import 'package:appoinx/core/widgets/app_loading_button.dart';
 import 'package:appoinx/features/auth/otp/controllers/otp_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
@@ -65,9 +67,22 @@ class OtpScreen extends StatelessWidget {
                       style: textStyles.body3,
                     ),
                     const SizedBox(height: 32),
-                    Pinput(
-                      defaultPinTheme: defaultPinTheme,
-                      focusedPinTheme: focusedPinTheme,
+                    Form(
+                      key: controller.formKey,
+                      autovalidateMode: AutovalidateMode.onUnfocus,
+                      child: Obx(() {
+                        return Pinput(
+                          controller: controller.otpController,
+                          enabled: !controller.isSubmitting.value,
+                          validator: ValidationBuilder()
+                              .minLength(4)
+                              .maxLength(4)
+                              .required()
+                              .build(),
+                          defaultPinTheme: defaultPinTheme,
+                          focusedPinTheme: focusedPinTheme,
+                        );
+                      }),
                     ),
                     const SizedBox(height: 16),
                     Row(
@@ -75,12 +90,18 @@ class OtpScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text("Didn't receive email? "),
-                        GestureDetector(
-                          onTap: controller.handleResend,
-                          child: Text(
-                            "Resend",
-                            style: textStyles.body2.copyWith(
-                              color: colors.green300,
+                        Obx(
+                          () => GestureDetector(
+                            onTap: controller.isSubmitting.value
+                                ? null
+                                : controller.handleResend,
+                            child: Text(
+                              "Resend",
+                              style: textStyles.body2.copyWith(
+                                color: controller.isSubmitting.value
+                                    ? colors.neutral50
+                                    : colors.green300,
+                              ),
                             ),
                           ),
                         ),
@@ -91,10 +112,13 @@ class OtpScreen extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: controller.handleSubmit,
-                  child: const Text("Verify"),
-                ),
+                child: Obx(() {
+                  return AppLoadingButton(
+                    label: "Verify",
+                    isLoading: controller.isSubmitting.value,
+                    onPressed: controller.handleSubmit,
+                  );
+                }),
               ),
             ],
           ),

@@ -6,4 +6,5 @@ abstract class AppRouteNames {
   static const forgotPassword = "/forgot-password";
   static const otp = "/otp";
   static const success = "/success";
+  static const resetPassword = "/reset-password";
 }

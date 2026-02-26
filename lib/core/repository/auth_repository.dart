@@ -39,4 +39,52 @@ class AuthRepository {
     final user = User.fromJson(data["data"]);
     return user;
   }
+
+  Future<dynamic> forgotPassword({required String email}) async {
+    final response = await _dio.post(
+      "/auth/forgot-password",
+      data: {"email": email},
+    );
+
+    final data = response.data;
+    return data;
+  }
+
+  Future<String> verifyOtp({required String email, required String otp}) async {
+    final response = await _dio.post(
+      "/auth/verify-otp",
+      data: {
+        "email": email,
+        "otp": otp,
+      },
+    );
+
+    final data = response.data;
+    return data["data"]["resetToken"];
+  }
+
+  Future<void> resetPassword({
+    required String resetToken,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    await _dio.post(
+      "/auth/reset-password",
+      data: {
+        "resetToken": resetToken,
+        "password": password,
+        "passwordConfirmation": passwordConfirmation,
+      },
+    );
+  }
+
+  Future<dynamic> resendOtp({required String email}) async {
+    final response = await _dio.post(
+      "/auth/resend-otp",
+      data: {"email": email},
+    );
+
+    final data = response.data;
+    return data;
+  }
 }
