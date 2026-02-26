@@ -16,6 +16,7 @@ class SigninForm extends StatelessWidget {
 
     return Form(
       key: controller.formKey,
+      autovalidateMode: AutovalidateMode.onUnfocus,
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

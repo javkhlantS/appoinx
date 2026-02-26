@@ -60,14 +60,14 @@ class SuccessScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        "Reset Successfully!",
+                        controller.title,
                         style: textStyles.h2.copyWith(
                           color: colors.neutral900,
                         ),
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        "Your password has been reset successfully. Please login with new credentials.",
+                        controller.description,
                         style: textStyles.body3,
                         textAlign: TextAlign.center,
                       ),

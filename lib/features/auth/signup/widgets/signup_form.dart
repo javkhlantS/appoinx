@@ -1,8 +1,9 @@
-import 'package:appoinx/core/widgets/app_checkbox_wrapper.dart';
+import 'package:appoinx/core/widgets/app_loading_button.dart';
 import 'package:appoinx/core/widgets/app_text_field_icon_wrapper.dart';
 import 'package:appoinx/core/widgets/app_text_field_wrapper.dart';
 import 'package:appoinx/features/auth/signup/controllers/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -14,14 +15,48 @@ class SignupForm extends StatelessWidget {
     final controller = Get.find<SignupController>();
 
     return Form(
+      key: controller.formKey,
+      autovalidateMode: AutovalidateMode.onUnfocus,
       child: ListView(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         children: [
           AppTextFieldWrapper(
             label: "Email",
-            builder: (decoration) => TextFormField(
-              decoration: decoration.copyWith(hintText: 'Enter email'),
+            builder: (decoration) => Obx(
+              () => TextFormField(
+                controller: controller.emailController,
+                enabled: !controller.isSubmitting.value,
+                validator: ValidationBuilder()
+                    .required()
+                    .email("Please enter a valid email")
+                    .build(),
+                decoration: decoration.copyWith(hintText: 'Enter email'),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          AppTextFieldWrapper(
+            label: "First Name",
+            builder: (decoration) => Obx(
+              () => TextFormField(
+                controller: controller.firstNameController,
+                enabled: !controller.isSubmitting.value,
+                validator: ValidationBuilder().required().build(),
+                decoration: decoration.copyWith(hintText: "Enter First Name"),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          AppTextFieldWrapper(
+            label: "Last Name",
+            builder: (decoration) => Obx(
+              () => TextFormField(
+                controller: controller.lastNameController,
+                enabled: !controller.isSubmitting.value,
+                validator: ValidationBuilder().required().build(),
+                decoration: decoration.copyWith(hintText: "Enter Last Name"),
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -39,6 +74,9 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
               builder: (decoration) => TextFormField(
+                controller: controller.passwordController,
+                enabled: !controller.isSubmitting.value,
+                validator: ValidationBuilder().required().build(),
                 obscureText: controller.obscurePassword.value,
                 decoration: decoration.copyWith(hintText: '********'),
               ),
@@ -59,20 +97,21 @@ class SignupForm extends StatelessWidget {
                 ),
               ),
               builder: (decoration) => TextFormField(
+                controller: controller.passwordConfirmationController,
+                enabled: !controller.isSubmitting.value,
+                validator: ValidationBuilder().required().build(),
                 obscureText: controller.obscurePassword.value,
                 decoration: decoration.copyWith(hintText: '********'),
               ),
             );
           }),
-          const SizedBox(height: 16),
-          AppCheckboxWrapper(
-            label: "Remember Password",
-            child: Checkbox(value: true, onChanged: (value) {}),
-          ),
           const SizedBox(height: 28),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text("Sign Up"),
+          Obx(
+            () => AppLoadingButton(
+              label: "Sign Up",
+              isLoading: controller.isSubmitting.value,
+              onPressed: controller.handleSubmit,
+            ),
           ),
         ],
       ),
